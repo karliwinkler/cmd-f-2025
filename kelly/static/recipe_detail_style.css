@@ -8,7 +8,9 @@
 .container {
     display: flex;
     gap: 50px; /* Optional: Adds spacing between divs */
-    align-items: center; /* Centers items vertically */} */
+    align-items: center; /* Centers items vertically */
+    justify-content: center;
+} 
 
 .box {
     text-align: left;
@@ -16,8 +18,22 @@
 }
 
 .green {
-    background-color: #ADC178;
-    padding: 20px;
+    width: 450px;  /* Set fixed width
+    /* height: 500px; Set fixed height */ 
+    padding: 25px;
     padding-top: 10px;
+    background-color: #DDE5B6;
     border-radius: 10px; /* Optional: adds rounded corners */
+}
+
+.light-green {
+    padding: 25px;
+    padding-top: 10px;
+    width: 1000px;
+    background-color: #DDE5B6;
+    border-radius: 10px; /* Optional: adds rounded corners */
+}
+
+.heading {
+    text-align: center;
 }

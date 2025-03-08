@@ -16,6 +16,13 @@ recipes = [
             "Fresh basil leaves",
             "Salt and pepper to taste",
             "Parmesan cheese (optional)"
+        ],
+        "instructions": [
+            "1. Boil a large pot of salted water. Cook the spaghetti noodles according to package instructions.",
+            "2. While the pasta is cooking, heat olive oil in a pan over medium heat. Add the garlic and sauté until fragrant.",
+            "3. Add the tomato sauce to the pan and bring to a simmer. Season with salt and pepper to taste.",
+            "4. Drain the pasta and add it to the sauce. Toss to combine.",
+            "5. Serve with fresh basil and grated Parmesan cheese, if desired."
         ]
     },
     {
@@ -32,6 +39,12 @@ recipes = [
             "Salt and pepper to taste",
             "Croutons (optional)",
             "Feta cheese (optional)"
+        ],
+        "instructions": [
+            "1. In a large bowl, combine the mixed lettuce, cherry tomatoes, cucumber, and red onion.",
+            "2. In a small bowl, whisk together olive oil, balsamic vinegar, salt, and pepper.",
+            "3. Pour the dressing over the salad and toss to coat.",
+            "4. Top with croutons and feta cheese if desired."
         ]
     },
     {
@@ -49,6 +62,14 @@ recipes = [
             "2 tbsp melted butter",
             "1/2 tsp vanilla extract",
             "Maple syrup and butter for serving"
+        ],
+        "instructions": [
+            "1. In a large bowl, whisk together flour, sugar, baking powder, baking soda, and salt.",
+            "2. In another bowl, whisk together the buttermilk, egg, melted butter, and vanilla extract.",
+            "3. Pour the wet ingredients into the dry ingredients and stir until just combined (don't overmix).",
+            "4. Heat a griddle or non-stick skillet over medium heat. Lightly grease with butter.",
+            "5. Pour 1/4 cup of batter onto the skillet for each pancake. Cook until bubbles form on the surface, then flip and cook until golden brown on the other side.",
+            "6. Serve with maple syrup and butter."
         ]
     }
 ]
