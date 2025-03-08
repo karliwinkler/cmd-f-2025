@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe.title }}</title>
+    <link rel="stylesheet" href="../static/recipe_detail_style.css">
+</head>
+<body>
+    <div><h1>{{ recipe.title }}</h1>
+        <p>{{ recipe.description }}</p>
+    </div>
+    <div class="container">
+    <div class="recipe box">
+        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+    </div>
+    <div class="box green">
+
+    <h2>Ingredients</h2>
+    <ul>
+        {% for item in recipe.ingredients %}
+        <p>{{ item }}</p>
+        {% endfor %}
+    </ul>
+
+    <h2>Instructions</h2>
+    <p>{{ recipe.instructions }}</p>
+</div>
+</div>
+    <a href="/">← Back to Recipes</a>
+</body>
+</html>
