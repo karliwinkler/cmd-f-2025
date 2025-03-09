@@ -9,7 +9,8 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-image: url('https://wallpapers.com/images/hd/food-4k-m37wpodzrcbv5gvw.jpg');
+    
+    background-image: url('https://cdn2.vectorstock.com/i/1000x1000/49/16/healthy-food-over-green-background-vector-2234916.jpg');
     background-size: cover;
     background-position: center center;
     color: #333;
@@ -29,7 +30,7 @@ body {
 
 /* Heading box styles */
 .heading-box {
-    background-color: rgba(0, 0, 0, 0.6); /* Transparent black with alpha of 0.6 */
+    background-color: #6C584C;
     color: #e4dba8; /* Beige text color */
     padding: 20px;
     border-radius: 10px;
@@ -63,13 +64,14 @@ a:hover {
 /* Button styles */
 button {
     padding: 10px 20px;
-    background-color: #ADC178;
+    background-color: #adc178;
     color: #fff;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
     margin-top: 20px;
+
 }
 
 button:hover {
