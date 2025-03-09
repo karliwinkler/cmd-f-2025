@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import test
+import random
 
 app = Flask(__name__)
 
@@ -280,12 +281,20 @@ def index():
 
 
 @app.route("/recipes_page")
-def recipes_page(cuisine, ingredient, category):
-    # areaRecipes = test.get_recipes_area(cuisine)
-    # ingredientRecipes = test.get_recipes_ingredient(ingredient)
+def recipes_page():
+    cuisine = request.args["cuisine"]
+    category = request.args["category"]
+    ingredient = request.args["ingredient"]
+    print(cuisine+category+ingredient)
+
+    areaRecipes = test.get_recipes_area(cuisine)
+    ingredientRecipes = test.get_recipes_ingredient(ingredient)
     mainsRecipes = test.get_recipes_mains(category)
 
-    return render_template("recipes.html", recipes=mainsRecipes)
+    chosen_recipes = random.sample(areaRecipes, 8) + random.sample(ingredientRecipes, 8) + random.sample(mainsRecipes, 8)
+
+
+    return render_template("recipes.html", recipes=chosen_recipes)
 
 @app.route("/recipe/<id>")
 def recipe_detail(id):
@@ -319,7 +328,7 @@ def submit_options():
         category = request.form["category"]
 
         # Redirect to /results with the selections as URL parameters
-        return recipes_page(cuisine, ingredient, category)
+        return redirect(url_for('recipes_page', cuisine=cuisine, ingredient=ingredient, category=category))
 
     return  "Error", 400
 
