@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Cards</title>
+    <link rel="stylesheet" href="../static/style.css"> <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../static/recipes_style.css">
+</head>
+<body style="background-color: #ADC178;">
+    <form action="{{ url_for('submit_recipes') }}" method="POST" id="recipe-form">
+    {% for recipe in recipes %}
+    <div class="card">
+        <img src="{{ recipe.image }}" alt="{{ recipe.name }}">
+        <a href="{{ url_for('recipe_detail', id=recipe.id) }}" target="_blank">
+        <input type="checkbox" class="card-checkbox" name="selected_recipes" value="{{ recipe.id }}" >
+        <h2>{{ recipe.name }}</h2>
+    </a>
+    </div>
+    {% endfor %}
+    <button type="submit" class="submit-btn">Submit</button>
+</form>
+</body>
+</html>

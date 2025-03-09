@@ -1,0 +1,76 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh; /* Full screen height */
+}
+
+label {
+    font-weight: bold;
+    font-size: 35px;
+    margin-right: 50px;
+    width: 350px;
+    text-align: right;
+}
+
+.dropdown-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+
+}
+
+select {
+    padding: 10px;
+    width: 220px;
+    font-size: 16px; /* Make text larger */
+    border: 2px solid #ADC178;
+    border-radius: 8px; /* Rounded corners */
+    background-color: #DDE5B6; /* White background */
+    cursor: pointer;
+    appearance: none; /* Removes default browser styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 30px; /* Space for custom arrow */
+}
+
+select:hover {
+    border-color: #6C584C;
+    background-color: #ADC178;
+}
+
+header {
+    background-color: #DDE5B6; /* Blue background */
+    color: white; /* White text */
+    padding: 30px; /* Padding for spacing around text */
+    text-align: center; /* Horizontally center the text */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 0px; /* Space between header and form */
+    margin-right: 300px;
+    margin-left: 300px;
+    margin-top: 30px;
+    display: flex; /* Flexbox for centering */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+}
+
+/* Header title (h1) styling */
+header h1 {
+    font-size: 40px; /* Larger font for the title */
+    margin: 0; /* Remove default margin */
+}
+
+/* Button Container (Position at bottom center) */
+.button-container {
+    position: fixed;
+    bottom: 70px; /* Distance from the bottom of the page */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+}
+
+
