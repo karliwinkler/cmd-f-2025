@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Options Select</title>
+    <link rel="stylesheet" href="../static/style.css"> <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../static/searchPageStyle.css">
+</head>
+<body>
+
+    <header>
+        <h1>Select your meal preferences</h1>
+    </header>
+
+
+
+<form action="{{ url_for('submit_options') }}" method="POST" id="options-form">
+<div class="container">
+
+    
+    <!-- Cuisine Dropdown -->
+    <div class="dropdown-group">
+        <label for="cuisine">Food Cuisine:</label>
+        <select id="cuisine" name="cuisine" required>
+            <option value="">Select Cuisine</option>
+            <option value="italian">Italian</option>
+            <option value="japanese">Japanese</option>
+            <option value="indian">Indian</option>
+            <option value="chinese">Chinese</option>
+            <option value="greek">Greek</option>
+            <option value="american">American</option>
+            <option value="french">French</option>
+            <option value="canadian">Canadian</option>
+        </select>
+    </div>
+
+    <!-- Main Ingredient Dropdown -->
+    <div class="dropdown-group">
+        <label for="ingredient">Main Ingredient:</label>
+        <select id="ingredient" name="ingredient" required>
+            <option value="">Select Ingredient</option>
+            <option value="onions">Onions</option>
+            <option value="potatoes">Potatoes</option>
+            <option value="rice">Rice</option>
+            <option value="eggs">Eggs</option>
+            <option value="carrots">Carrots</option>
+            <option value="bread">Bread</option>
+            <option value="milk">Milk</option>
+        </select>
+    </div>
+
+    <!-- Category Dropdown -->
+    <div class="dropdown-group">
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="">Select Category</option>
+            <option value="chicken">Chicken</option>
+            <option value="beef">Beef</option>
+            <option value="lamb">Lamb</option>
+            <option value="pork">Pork</option>
+            <option value="seafood">Seafood</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="dessert">Dessert</option>
+        </select>
+    </div>
+</div>
+
+<div class="button-container">
+    <button type="submit" class="submit-button">Submit</button>
+</div>
+</form>
+
+</body>
+</html>
+
+
