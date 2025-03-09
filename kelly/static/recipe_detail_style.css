@@ -4,6 +4,7 @@
     object-fit: cover; /* Ensures the image fills the area */
     border-radius: 10px; /* Optional: adds rounded corners */
     align-self: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .container {
@@ -24,6 +25,8 @@
     padding-top: 10px;
     background-color: #DDE5B6;
     border-radius: 10px; /* Optional: adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .light-green {
@@ -32,8 +35,14 @@
     width: 1000px;
     background-color: #DDE5B6;
     border-radius: 10px; /* Optional: adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
-.heading {
+.title {
     text-align: center;
+    background-color: #DDE5B6;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

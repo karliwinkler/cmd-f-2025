@@ -40,35 +40,14 @@
                     <br>
                     <hr>
                     <br>
-                    <p><strong>Daily Calorie Count:</strong> 0</p>
-                    <p><strong>Daily Protein (g):</strong> 0</p>
-                    <p><strong>Daily Carbs:</strong> 0</p>
+                    <p><strong>Daily Calorie Count:</strong>{{calories[i//2]}}</p>
+                    <p><strong>Daily Protein (g):</strong>{{protein[i//2]}}</p>
+                    <p><strong>Daily Carbs:</strong>{{carbs[i//2]}}</p>
                 </div>
             </div>
             {% endfor %}
 
-        <div class="side-container">
-            <i><h3>Calculate your recommended nutrients:</h3></i>
-
-            <form action="{{ url_for('submit_nutrition') }}" method="post" class="styled-form" id="nutrition form">
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required>
-
-                <label for="weight">Weight (kg):</label>
-                <input type="number" id="weight" name="weight" required>
-
-                <label for="height">Height (cm):</label>
-                <input type="number" id="height" name="height" required>
-                <button type="submit">Submit</button>
-            </form>
-
-            <div class="nutrient-info">
-                <h3>Daily Calories: <span>Enter your stats!</span></h3>
-                <h3>Daily Protein (g): <span>Enter your stats!</span></h3>
-                <h3>Daily Carbohydrates: <span>Enter your stats!</span></h3>
-            </div>
             
-        </div>
         
     </div>
 </body>

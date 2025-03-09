@@ -2,7 +2,6 @@ import requests
 import json
 
 def get_total_protein(query):
-
     api_url = 'https://api.calorieninjas.com/v1/nutrition?query='
     response = requests.get(api_url + query, headers={'X-Api-Key': 'aWLd0q1XGNvX8Iy3J2kA8A==Yxg2vfvuiOhuTIBI'})
     if response.status_code == requests.codes.ok:

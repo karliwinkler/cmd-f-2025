@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, render_template_string
 import test
 import random
+import nutrition
+import bmr
 
 app = Flask(__name__)
 
@@ -70,22 +72,39 @@ def meal_plan_page(selected_recipes):
     selected_dict = selected_recipes.to_dict(flat=False)
     converted_list = [{key: value[0]} for key, value in selected_dict.items()]
     days=["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    return render_template("meal_plan.html", recipes=converted_list, weekdays=days)
+    names_list = list(selected_dict.values())
+    total_protein =[]
+    total_calories=[]
+    total_carbs=[]
+
+    for i in range(0,12,2):
+        total_protein.append(round(float(nutrition.get_total_protein(names_list[i][0])) + float(nutrition.get_total_protein(names_list[i+1][0])), 2))
+        total_calories.append(round(float(nutrition.get_total_calories(names_list[i][0])) + float(nutrition.get_total_calories(names_list[i+1][0])), 2))
+        total_carbs.append(round(float(nutrition.get_total_carbs(names_list[i][0])) + float(nutrition.get_total_carbs(names_list[i+1][0])), 2))
+
+    return render_template("meal_plan.html", recipes=converted_list, weekdays=days, protein=total_protein, carbs=total_carbs, calories=total_calories)
 
 @app.route("/submit_nutrition", methods=['POST'])
 def submit_nutrition():
-    return "hello"
-    # if request.method == 'POST':
-    #     # Get the selected values from the form
+    if request.method == 'POST':
+        # Get the selected values from the form
         
-    #     age = request.form['age']
-    #     weight = request.form['weight']
-    #     height = request.form['height']
+        age = request.form['age']
+        weight = request.form['weight']
+        height = request.form['height']
+        sex = request.form['sex']
 
-    #     return render_template('meal_plan_submitted_form.html', age=age, weight=weight, height=height)
+        nutrients = bmr.calculate_bmr(weight, height, age, sex)
 
+        calories = nutrients['calories']
+        carbs = nutrients['carbs']
+        protein = nutrients['protein']
 
-    # return  "Error", 400
+        print(calories)
+
+        return render_template('meal_plan_submitted_form.html', calories=calories, carbs=carbs, protein=protein)
+
+    return  "Error", 400
 
 
 
