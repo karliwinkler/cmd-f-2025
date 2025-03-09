@@ -28,7 +28,7 @@ def get_recipe():
     return meal['idMeal']
 
 #prints individual recipes based on recipe ID (currently prints name then Category: Instructions: and Ingredents) 
-def print_recipe(recipe_ID):
+def get_recipe_ID(recipe_ID):
 
     #call api with the specific ingredent list 
     api_url = f'https://www.themealdb.com/api/json/v1/1/lookup.php?i={recipe_ID}'
@@ -36,24 +36,37 @@ def print_recipe(recipe_ID):
 
     if response.status_code == requests.codes.ok:
         meal_data = response.json()
-    else:
-        print("Error:", response.status_code, response.text)
 
-    # Print the recipe details
-    if "meals" in meal_data and len(meal_data["meals"]) > 0:
-        meal = meal_data["meals"][0]
-        print(f"{meal['strMeal']}")
-        print(f"Category: {meal['strCategory']}")
-        print(f"Instructions: {meal['strInstructions']}")
-        
-        # Print ingredients
-        print("Ingredients:")
-        for i in range(1, 21):  # Maximum of 20 ingredients
-            ingredient = meal.get(f"strIngredient{i}", None)
-            measurement = meal.get(f"strMeasure{i}", None)
-            
-            if ingredient and ingredient.strip():  # Check for valid ingredient
-                print(f"{measurement if measurement else 'N/A'} {ingredient}")
+        recipes = []
+
+        for meal in meal_data['meals']:
+            recipe = {
+                'name': meal['strMeal'],
+                'category': meal['strCategory'],
+                'image': meal['strMealThumb'],
+                'instructions': meal['strInstructions'],
+                'ingredients': []
+            }
+
+            # Loop through the ingredients (up to 20)
+            for i in range(1, 21):
+                ingredient = meal.get(f"strIngredient{i}", None)
+                measurement = meal.get(f"strMeasure{i}", None)
+                
+                # Only add valid ingredients (non-empty strings)
+                if ingredient and ingredient.strip():
+                    ingredient_details = {
+                        'ingredient': ingredient,
+                        'measurement': measurement if measurement else 'N/A'
+                    }
+                    recipe['ingredients'].append(ingredient_details)
+
+            # Append the recipe to the recipes list
+            recipes.append(recipe)
+
+                    
+
+        return recipes
      
 def get_recipes_area(area):
     # call api with the specific area (country)
@@ -62,26 +75,61 @@ def get_recipes_area(area):
 
     if response.status_code == requests.codes.ok:
         meal_data = response.json()
-        print(response.json())
-    else:
-        print(f"Error: {response.status_code}, {response.text}")
-        return 
 
+        recipes = []
 
-def get_cList():
-    #call api for list of places if we need it to populate drop down lists??
+        # Extract each recipe name and its id
+        for meal in meal_data['meals']:
+            recipe = {
+                'name': meal['strMeal'],
+                'id': meal['idMeal'],
+                'image': meal['strMealThumb']
+            }
+            recipes.append(recipe)
 
-    api_url = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list'
+        # Return the list of recipes (id and name)
+        return recipes
+
+def get_recipes_mains(main):
+    # call api with the specific area (country)
+    api_url = f'https://www.themealdb.com/api/json/v1/1/filter.php?c={main}'
     response = requests.get(api_url)
 
     if response.status_code == requests.codes.ok:
         meal_data = response.json()
-    else:
-        print("Error:", response.status_code, response.text)
 
-    # Print each ingredient
-    if "meals" in meal_data:
-        for place in meal_data["meals"]:
-            print(place["strArea"])
+        recipes = []
 
-get_recipes_area("Italian")
+        # Extract each recipe name and its id
+        for meal in meal_data['meals']:
+            recipe = {
+                'name': meal['strMeal'],
+                'id': meal['idMeal'],
+                'image': meal['strMealThumb']
+            }
+            recipes.append(recipe)
+
+        # Return the list of recipes (id and name)
+        return recipes
+
+def get_recipes_ingredient(ingredient):
+    # call api with the specific ingredient
+    api_url = f'https://www.themealdb.com/api/json/v1/1/filter.php?i={ingredient}'
+    response = requests.get(api_url)
+
+    if response.status_code == requests.codes.ok:
+        meal_data = response.json()
+
+        recipes = []
+
+        # Extract each recipe name and its id
+        for meal in meal_data['meals']:
+            recipe = {
+                'name': meal['strMeal'],
+                'id': meal['idMeal'],
+                'image': meal['strMealThumb']
+            }
+            recipes.append(recipe)
+
+        # Return the list of recipes (id and name)
+        return recipes
