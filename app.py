@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, render_template_string
 import test
 import random
-import nutrition
 
 app = Flask(__name__)
 
@@ -19,7 +18,6 @@ def recipes_page():
     cuisine = request.args["cuisine"]
     category = request.args["category"]
     ingredient = request.args["ingredient"]
-    print(cuisine+category+ingredient)
 
     areaRecipes = test.get_recipes_area(cuisine)
     ingredientRecipes = test.get_recipes_ingredient(ingredient)
@@ -39,7 +37,7 @@ def recipe_detail(id):
 
 @app.route("/submit_recipes", methods=["POST"])
 def submit_recipes():
-    selected_recipes = request.form.getlist("selected_recipes")  # Get selected checkboxes
+    selected_recipes = request.form #["selected_recipes"]  # Get selected checkboxes
 
     if len(selected_recipes) != 12:
         return render_template_string("""
@@ -49,7 +47,9 @@ def submit_recipes():
             </script>
         """, sel=len(selected_recipes))
 
-    return redirect(url_for('meal_plan_page', recipes=selected_recipes))
+    return meal_plan_page(selected_recipes)
+
+# redirect(url_for('meal_plan_page', recipes=selected_recipes))
 
 
 @app.route("/submit_options", methods=['POST'])
@@ -66,12 +66,21 @@ def submit_options():
     return  "Error", 400
 
 @app.route("/meal_plan_page")
-def meal_plan_page():
-    selected_ids = request.args["recipes"] # these are the IDs
+def meal_plan_page(selected_recipes):
+    selected_dict = selected_recipes.to_dict(flat=False)
+    converted_list = [{key: value[0]} for key, value in selected_dict.items()]
+    days=["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    names_list = list(selected_dict.values())
+    total_protein =[]
+    total_calories=[]
+    total_carbs=[]
 
-    
-    return render_template("meal_plan.html", recipes=selected_ids)
-
+    for i in range(0,12,2):
+        total_protein.append(get_total_protein(names_list[i]) + get_total_protein(names_list[i+1]))
+        total_calories.append(get_total_calories(names_list[i]) + get_total_calories(names_list[i+1]))
+        total_carbs.append(get_total_carbs(names_list[i]) + get_total_carbs(names_list[i+1]))
+   
+    return render_template("meal_plan.html", recipes=converted_list, weekdays=days, protein=total_protein, carbs=total_carbs, calories=total_calories)
 
 @app.route("/submit_nutrition", methods=['POST'])
 def submit_nutrition():
@@ -81,11 +90,20 @@ def submit_nutrition():
         age = request.form['age']
         weight = request.form['weight']
         height = request.form['height']
+        sex = request.form['sex']
 
-        return render_template('meal_plan_submitted_form.html', age=age, weight=weight, height=height)
+        nutrients = calculate_bmr(weight, height, age, sex)
 
+        calories = nutrients['calories']
+        carbs = nutrients['carbs']
+        protein = nutrients['protein']
+
+        print(calories)
+
+        return render_template('meal_plan_submitted_form.html', calories=calories, carbs=carbs, protein=protein)
 
     return  "Error", 400
+
 
 
 if __name__ == "__main__":
