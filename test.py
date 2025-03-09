@@ -84,4 +84,4 @@ def get_cList():
         for place in meal_data["meals"]:
             print(place["strArea"])
 
-
+get_recipes_area("Italian")

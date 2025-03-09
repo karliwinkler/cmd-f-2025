@@ -9,10 +9,10 @@
 <body style="background-color: #ADC178;">
     {% for recipe in recipes %}
     <div class="card">
-        <a href="{{ url_for('recipe_detail', title=recipe.title) }}">
-            <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+        <a href="{{ url_for('recipe_detail', title=recipe.title) }}" target="_blank">
+        <input type="checkbox" class="card-checkbox">
         <h2>{{ recipe.title }}</h2>
-        <p>{{ recipe.description }}</p>
     </a>
     </div>
     {% endfor %}

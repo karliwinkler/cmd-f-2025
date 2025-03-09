@@ -15,16 +15,30 @@ body {
     margin: 20px;
     padding: 20px;
     text-align: center;
+    position: relative;
 }
 .card img {
-    width: 100%;
+    width: 300px;
+    height: 300px; /* Maintain aspect ratio */
+    border-radius: 10px;
+    object-fit: cover; /* Ensures the image covers the space without distortion */
     border-radius: 10px;
 }
 .card h2 {
     font-size: 20px;
-    margin: 15px 0;
+    /* margin: 15px 0; */
 }
 .card p {
     font-size: 14px;
     color: #555;
+}
+.card-checkbox {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    transform: scale(1.5); /* Optional: makes the checkbox larger */
+}
+a {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherits the color from its parent element */
 }
