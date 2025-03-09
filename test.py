@@ -62,11 +62,20 @@ def get_recipes_area(area):
 
     if response.status_code == requests.codes.ok:
         meal_data = response.json()
-        print(response.json())
-    else:
-        print(f"Error: {response.status_code}, {response.text}")
-        return 
 
+        recipes = []
+
+        # Extract each recipe name and its id
+        for meal in meal_data['meals']:
+            recipe = {
+                'name': meal['strMeal'],
+                'id': meal['idMeal'],
+                'image': meal['strMealThumb']
+            }
+            recipes.append(recipe)
+
+        # Return the list of recipes (id and name)
+        return recipes
 
 def get_cList():
     #call api for list of places if we need it to populate drop down lists??
