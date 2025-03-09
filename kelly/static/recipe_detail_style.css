@@ -5,13 +5,6 @@
     border-radius: 10px; /* Optional: adds rounded corners */
 }
 
-.container {
-    display: flex;
-    gap: 50px; /* Optional: Adds spacing between divs */
-    align-items: center; /* Centers items vertically */
-    justify-content: center;
-} 
-
 .box {
     text-align: left;
     font-size: 18px;

@@ -42,3 +42,24 @@ a {
     text-decoration: none; /* Removes the underline */
     color: inherit; /* Inherits the color from its parent element */
 }
+#recipe-form {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap */
+    justify-content: center; /* Centers items in the row */
+    gap: 20px; /* Adds space between cards */
+}
+.submit-btn {
+    background-color: white; 
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    margin: 20px auto; /* Centers the button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}

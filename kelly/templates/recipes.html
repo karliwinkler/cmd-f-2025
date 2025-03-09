@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../static/recipes_style.css">
 </head>
 <body style="background-color: #ADC178;">
+    <form id="recipe-form">
     {% for recipe in recipes %}
     <div class="card">
         <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
@@ -16,5 +17,7 @@
     </a>
     </div>
     {% endfor %}
+    <button type="submit" class="submit-btn">Submit</button>
+</form>
 </body>
 </html>
