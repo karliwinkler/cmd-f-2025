@@ -83,14 +83,5 @@ def get_cList():
     if "meals" in meal_data:
         for place in meal_data["meals"]:
             print(place["strArea"])
- 
-def create_card():
-    ID=get_recipe()
-    print_recipe(ID)
-    T_F = str(input("Do you want this recipe, y/n? "))
-    
-area = "Canadian"
-get_recipes_area(area)
-
 
 
