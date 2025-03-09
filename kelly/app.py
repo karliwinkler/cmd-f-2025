@@ -18,7 +18,6 @@ def recipes_page():
     cuisine = request.args["cuisine"]
     category = request.args["category"]
     ingredient = request.args["ingredient"]
-    print(cuisine+category+ingredient)
 
     areaRecipes = test.get_recipes_area(cuisine)
     ingredientRecipes = test.get_recipes_ingredient(ingredient)
@@ -38,7 +37,7 @@ def recipe_detail(id):
 
 @app.route("/submit_recipes", methods=["POST"])
 def submit_recipes():
-    selected_recipes = request.form.getlist("selected_recipes")  # Get selected checkboxes
+    selected_recipes = request.form #["selected_recipes"]  # Get selected checkboxes
 
     if len(selected_recipes) != 12:
         return render_template_string("""
@@ -48,7 +47,9 @@ def submit_recipes():
             </script>
         """, sel=len(selected_recipes))
 
-    return redirect(url_for('meal_plan_page', recipes=selected_recipes))
+    return meal_plan_page(selected_recipes)
+
+# redirect(url_for('meal_plan_page', recipes=selected_recipes))
 
 
 @app.route("/submit_options", methods=['POST'])
@@ -65,9 +66,13 @@ def submit_options():
     return  "Error", 400
 
 @app.route("/meal_plan_page")
-def meal_plan_page():
-    selected_ids = request.args["recipes"] # these are the IDs
-    return render_template("meal_plan.html", recipes=selected_ids)
+def meal_plan_page(selected_recipes):
+    dict = selected_recipes.to_dict(flat=False)
+    # return dict
+    # for s in selected_recipes:
+    # print(selected_recipes.items())
+    # return selected_recipes
+    return render_template("meal_plan.html", recipes=dict)
 
 
 if __name__ == "__main__":

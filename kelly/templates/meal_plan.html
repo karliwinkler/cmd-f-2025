@@ -19,10 +19,19 @@
         </div>
 
         <div class="meal-plan-container">
-            
+            {% for id, recipe in recipes.items() %}
+            <div class="card">
+                <div class="meal-box">
+                    <h3>Monday</h3>
+                    <p><strong>Lunch:</strong> {{ recipe }}</p>
+                    <p><strong>Dinner:</strong> Recipe 2</p>
+                </div>
+            </a>
+            </div>
+            {% endfor %}
             <div class="meal-box">
                 <h3>Monday</h3>
-                <p><strong>Lunch:</strong> {{recipes}}</p>
+                <p><strong>Lunch:</strong> {{recipes[0].name}}</p>
                 <p><strong>Dinner:</strong> Recipe 2</p>
             </div>
 

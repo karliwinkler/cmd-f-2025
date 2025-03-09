@@ -13,7 +13,7 @@
     <div class="card">
         <img src="{{ recipe.image }}" alt="{{ recipe.name }}">
         <a href="{{ url_for('recipe_detail', id=recipe.id) }}" target="_blank">
-        <input type="checkbox" class="card-checkbox" name="selected_recipes" value="{{ recipe.id }}" >
+        <input type="checkbox" class="card-checkbox" name={{recipe.id}} value="{{ recipe.name }}" >
         <h2>{{ recipe.name }}</h2>
     </a>
     </div>
