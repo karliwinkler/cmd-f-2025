@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meal Options Select</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="searchPageStyle.css">
+    <link rel="stylesheet" href="../static/style.css"> <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../static/searchPageStyle.css">
 </head>
 <body>
 
@@ -13,11 +13,12 @@
         <h1>Select your meal preferences</h1>
     </header>
 
+<form action="{{ url_for('submit_options') }}" method="POST" id="options-form">
 <div class="container">
     <!-- Cuisine Dropdown -->
     <div class="dropdown-group">
         <label for="cuisine">Food Cuisine:</label>
-        <select id="cuisine">
+        <select id="cuisine" name="cuisine">
             <option value="">Select Cuisine</option>
             <option value="italian">Italian</option>
             <option value="mexican">Mexican</option>
@@ -34,7 +35,7 @@
     <!-- Main Ingredient Dropdown -->
     <div class="dropdown-group">
         <label for="ingredient">Main Ingredient:</label>
-        <select id="ingredient">
+        <select id="ingredient" name="ingredient">
             <option value="">Select Ingredient</option>
             
             <option value="vegetables">Vegetables</option>
@@ -51,25 +52,25 @@
     <!-- Category Dropdown -->
     <div class="dropdown-group">
         <label for="category">Category:</label>
-        <select id="category">
+        <select id="category" name="category">
             <option value="">Select Category</option>
             <option value="chicken">Chicken</option>
             <option value="salmon">Salmon</option>
             <option value="beef">Beef</option>
             <option value="lamb">Lamb</option>
             <option value="pork">Pork</option>
-            <option value="dessert">Seafood</option>
+            <option value="seafood">Seafood</option>
             <option value="Vegetarian">Vegetarian</option>
-            <option value="vegan">Vegan</option>
-            <option value="goat ">Beef</option>
+            <option value="dessert">Dessert</option>
+            <option value="goat">Beef</option>
         </select>
     </div>
 </div>
 
 <div class="button-container">
-    <a href="{{ url_for('select_options')}}">Go to Recipes</a>
-<button class="submit-button">Submit</button></a>
+    <button type="submit" class="submit-button">Submit</button>
 </div>
+</form>
 
 </body>
 </html>

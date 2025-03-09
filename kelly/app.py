@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import test
 
 app = Flask(__name__)
 
@@ -273,23 +274,69 @@ recipes = [
 ]
 
 
-
 @app.route("/")
-def home():
-    return render_template("recipes.html", recipes=recipes)
+def index():
+    return render_template("searchPage.htm")
 
-@app.route("/recipe/<title>")
-def recipe_detail(title):
-    recipe = get_recipe(title)
+
+@app.route("/recipes_page")
+def recipes_page(cuisine, ingredient, category):
+    # areaRecipes = test.get_recipes_area(cuisine)
+    # ingredientRecipes = test.get_recipes_ingredient(ingredient)
+    mainsRecipes = test.get_recipes_mains(category)
+
+    return render_template("recipes.html", recipes=mainsRecipes)
+
+@app.route("/recipe/<id>")
+def recipe_detail(id):
+    recipe = test.get_recipe_ID(id)
+    # return recipe[0]; 
     if not recipe:
         return "Recipe not found", 404
-    return render_template("recipe_detail.html", recipe=recipe)
+    return render_template("recipe_detail.html", recipe=recipe[0])
 
-def get_recipe(name):
-    for r in recipes:
-      if (r["title"] == name):
-        return r
-    return None
+@app.route("/submit_recipes", methods=["POST"])
+def submit_recipes():
+    selected_recipes = request.form.getlist("selected_recipes")  # Get selected checkboxes
+
+    if len(selected_recipes) != 12:
+        return "Error: You must select exactly 12 recipes!", 400
+
+    return f"Success! You selected: {', '.join(selected_recipes)}"
+
+# def get_recipe(name):
+#     for r in recipes:
+#       if (r["title"] == name):
+#         return r
+#     return None
+
+@app.route("/submit_options", methods=['POST'])
+def submit_options():
+    if request.method == 'POST':
+        # Get the selected values from the form
+        cuisine = request.form["cuisine"]
+        ingredient = request.form["ingredient"]
+        category = request.form["category"]
+
+        # Redirect to /results with the selections as URL parameters
+        return recipes_page(cuisine, ingredient, category)
+
+    return  "Error", 400
+
+# @app.route('/recipes')
+# def recipes():
+#     # Get the selections from the URL parameters
+#     cuisine = request.args.get('cuisine')
+#     ingredient = request.args.get('ingredient')
+#     category = request.args.get('category')
+
+#     # Get the recipes based on the selections
+#     areaRecipes = get_recipes_area(cuisine)
+#     ingredientRecipes = get_recipes_ingredient(ingredient)
+#     mainsRecipes = get_recipes_mains(category)
+
+
+#     return render_template('recipes.html', areaRecipes=areaRecipes, ingredientRecipes=ingredientRecipes, mainsRecipes=mainsRecipes)
 
 if __name__ == "__main__":
     app.run(debug=True)
