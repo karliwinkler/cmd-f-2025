@@ -67,12 +67,26 @@ def submit_options():
 
 @app.route("/meal_plan_page")
 def meal_plan_page(selected_recipes):
-    dict = selected_recipes.to_dict(flat=False)
-    # return dict
-    # for s in selected_recipes:
-    # print(selected_recipes.items())
-    # return selected_recipes
-    return render_template("meal_plan.html", recipes=dict)
+    selected_dict = selected_recipes.to_dict(flat=False)
+    converted_list = [{key: value[0]} for key, value in selected_dict.items()]
+    days=["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    return render_template("meal_plan.html", recipes=converted_list, weekdays=days)
+
+@app.route("/submit_nutrition", methods=['POST'])
+def submit_nutrition():
+    return "hello"
+    # if request.method == 'POST':
+    #     # Get the selected values from the form
+        
+    #     age = request.form['age']
+    #     weight = request.form['weight']
+    #     height = request.form['height']
+
+    #     return render_template('meal_plan_submitted_form.html', age=age, weight=weight, height=height)
+
+
+    # return  "Error", 400
+
 
 
 if __name__ == "__main__":

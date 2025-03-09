@@ -70,3 +70,7 @@ button:hover {
         padding: 10px;
     }
 }
+a {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherits the color from its parent element */
+}
